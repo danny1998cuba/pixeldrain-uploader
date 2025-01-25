@@ -1,0 +1,63 @@
+{
+  "name": "pixeldrain-uploader",
+  "version": "1.0.0",
+  "main": "build/main.js",
+  "scripts": {
+    "start": "npm run compile && electron build/main.js",
+    "compile": "tsc",
+    "build": "tsc && npm run copy-public && electron-builder",
+    "copy-public": "npx ncp ./public ./build/public"
+  },
+  "build": {
+    "appId": "com.d98csw.pixeldrain-uploader",
+    "productName": "Pixeldrain uploader - D98G_SW",
+    "files": [
+      "build/**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "public",
+        "to": "public",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/public/favicon-light-gray.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/public/favicon-light-gray.ico"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.10",
+    "electron": "^34.0.1",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.1.2",
+    "ncp": "^2.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
+  }
+}
